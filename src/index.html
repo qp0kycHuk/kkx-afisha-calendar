@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KKX - calendar</title>
+</head>
+
+<body>
+
+
+
+  <script>
+    const activeDates = {
+      [+(new Date(2022, 3, 15))]: 'г. Москва',
+      [+(new Date(2022, 3, 14))]: 'г. Санкт-Петербург',
+      [+(new Date(2022, 3, 13))]: 'г. Краснодар',
+      [+(new Date(2022, 3, 12))]: 'г. Москва',
+      [+(new Date(2022, 3, 11))]: 'г. Санкт-Петербург',
+      [+(new Date(2022, 3, 09))]: 'г. Краснодар',
+      [+(new Date(2022, 3, 08))]: 'г. Москва',
+      [+(new Date(2022, 3, 07))]: 'г. Санкт-Петербург',
+      [+(new Date(2022, 3, 06))]: 'г. Краснодар',
+      [+(new Date(2022, 2, 26))]: 'г. Магадан',
+    }
+
+    window.activeDates = activeDates
+  </script>
+
+  <style>
+    .afisha-calendar-datepicker {
+      width: 800px;
+    }
+
+    .air-datepicker-cell button {
+      width: 100%;
+      height: 100%;
+    }
+
+    .air-datepicker-cell span {
+      display: block;
+    }
+  </style>
+  <div id="afish-datepicker">
+
+  </div>
+</body>
+
+</html>
