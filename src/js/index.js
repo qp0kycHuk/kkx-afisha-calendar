@@ -4,21 +4,24 @@ import 'air-datepicker/air-datepicker.css';
 
 
 let currentMonth = new Date().getMonth();
+let afishaDatePicker;
 const startDate = new Date();
 startDate.setMonth(currentMonth);
 
 
 
 
-
 function renderCellHandler({ date, cellType }) {
   if (cellType == 'day') {
+
     if (Object.keys(activeDates).includes((+date).toString())) {
       let month = date.getMonth() + 1;
       if (month < 10) month = "0" + month;
+      let day = date.getDate();
+      if (day < 10) day = "0" + day;
 
       return {
-        html: `<button data-scroll-to=".day_${date.getDate()}">
+        html: `<button data-scroll-to=".day_${day}">
         <span class="cell-date">${date.getDate()}</span>
         <span class="cell-city">${activeDates[(+date).toString()]}</span>
         </button>`,
@@ -32,8 +35,9 @@ function renderCellHandler({ date, cellType }) {
 
 
 
+
 function handlerChangeMonth({ month: newMonth }) {
-  console.log(newMonth);
+
   currentMonth = newMonth
   let month = newMonth + 1;
   month = month < 10 ? '0' + month : month;
@@ -42,8 +46,11 @@ function handlerChangeMonth({ month: newMonth }) {
     .then((response) => response.text())
     .then((result) => {
       const cover = document.querySelector('#afishahtml');
-      cover.innerHTML = result;
+      $(cover).html(result);
       return result
+    })
+    .then(() => {
+      afishaDatePicker.update({})
     })
 
 }
@@ -67,8 +74,10 @@ document.addEventListener('click', (event) => {
 })
 
 window.addEventListener('DOMContentLoaded', () => {
+  // console.log(Object.keys(activeDates).map((date) => new Date(+date)));
 
-  const afishaDatePicker = new AirDatepicker('#afish-datepicker', {
+
+  afishaDatePicker = new AirDatepicker('#afish-datepicker', {
     classes: 'afisha-calendar-datepicker',
     buttons: ['today'],
     startDate: startDate,
